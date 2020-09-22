@@ -62,7 +62,7 @@ return Joi.validate(course, schema);
 }
 // app.get('/api/posts/:year/:month', (req, res) => {
 //     res.send(req.params);
-// })
+// }
 
 
 
