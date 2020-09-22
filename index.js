@@ -10,7 +10,7 @@ const courses = [
     {id: 3, name: 'course3' },
 ];
 app.get('/', (req, res) => {
-    res.send('API:ver1.1');
+    res.send(' API: ver1.3 ');
 });
 
 app.get('/api/courses', (req, res) => {
@@ -64,8 +64,14 @@ return Joi.validate(course, schema);
 //     res.send(req.params);
 // read
 
+app.delete('/api/courses/:id', (req, res) => {
+    const course = courses.find(c => c.id === parseInt(req.params.id)); 
+    if (!course) res.status(404).send('The course with the given ID was not found');
 
-
+    const index = courses.indexOf(course);   
+    courses.splice(index, 1);
+    res.send(course);
+});    
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on Port ${port}....`));
 
